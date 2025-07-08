@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HaierGo – Book Your Flight</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <!-- Main styles -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Header / hero -->
+  <header class="hero">
+    <h1 class="logo">HaierGo</h1>
+    <p class="tagline">Where will you take off today?</p>
+  </header>
+
+  <!-- Booking form -->
+  <main>
+    <form id="bookingForm" class="card">
+      <h2>Flight search</h2>
+
+      <div class="field">
+        <label for="from">Departure airport</label>
+        <input list="output" id="from" name="from" autocomplete="off" placeholder="e.g. DEL – New Delhi" required />
+        <ul id="fromSuggestions" class="suggestions"></ul>
+      </div>
+
+      <div class="field">
+        <label for="to">Arrival airport</label>
+        <input list="output" id="to" name="to" autocomplete="off" placeholder="e.g. BOM – Mumbai" required />
+        <ul id="toSuggestions" class="suggestions"></ul>
+      </div>
+
+      <!-- Shared datalist so both boxes autocomplete -->
+      <datalist id="output">
+        <option value="DEL – Indira Gandhi Intl (DEL)"></option>
+        <option value="BOM – Chhatrapati Shivaji Intl (BOM)"></option>
+        <option value="BLR – Kempegowda Intl (BLR)"></option>
+        <option value="HYD – Rajiv Gandhi Intl (HYD)"></option>
+        <option value="MAA – Chennai Intl (MAA)"></option>
+        <option value="LHR – London Heathrow (LHR)"></option>
+        <option value="DXB – Dubai Intl (DXB)"></option>
+        <option value="JFK – New York JFK (JFK)"></option>
+      </datalist>
+
+      <div class="field half">
+        <label for="date">Departure date</label>
+        <input type="date" id="date" name="date" required />
+      </div>
+
+      <div class="field half">
+        <label for="passengers">Passengers</label>
+        <input type="number" id="passengers" name="passengers" min="1" max="20" value="1" required />
+      </div>
+
+      <button type="submit" class="primary" >Search Flights</button>
+    </form>
+    
+    <div id="output"></div>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
