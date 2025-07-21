@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Agent – Flight Requests</title>
+  <link rel="stylesheet" href="/css/plant-head.css" />
+</head>
+<body>
+  <h1>Booking Requests – </h1>
+  <div id="requestsContainer"></div>
+
+<h2>Past Requests</h2>
+<table id="pastRequestsTable" border="1">
+  <thead>
+    <tr>
+      <th>From</th>
+      <th>To</th>
+      <th>Date</th>
+      <th>Passengers</th>
+      <th>Email</th>
+      <th>Status</th>
+      <th>Time</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<script>
+  // Load Past Requests
+  fetch('/api/past-requests')
+    .then(response => response.json())
+    .then(data => {
+      const table = document.querySelector("#pastRequestsTable tbody");
+      table.innerHTML = "";
+      data.forEach(req => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${req.from}</td>
+          <td>${req.to}</td>
+          <td>${req.date}</td>
+          <td>${req.passengers}</td>
+          <td>${req.email}</td>
+          <td>${req.status || "pending"}</td>
+          <td>${new Date(req.timestamp).toLocaleString()}</td>
+        `;
+        table.appendChild(row);
+      });
+    });
+</script>
+
+
+  <script src="/js/agent.js"></script>
+</body>
+</html>
